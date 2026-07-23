@@ -1,0 +1,16 @@
+/* Unified portrait crop: the face remains the focus in every card and viewport. */
+.team-card {
+  height: auto;
+  aspect-ratio: 1.45 / 1;
+}
+
+.team-card img {
+  object-position: 50% 30%;
+}
+
+@media (max-width: 760px) {
+  .team-card {
+    height: auto;
+    aspect-ratio: 1.45 / 1;
+  }
+}

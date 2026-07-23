@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Разметка регионов Казахстана</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme: dark; --bg:#110016; --panel:#22002a; --line:rgba(218,173,255,.26); --violet:#c86bff; --pink:#ff78d1; }
+    * { box-sizing:border-box; } body { margin:0; min-height:100vh; color:#fff; background:radial-gradient(circle at 15% 15%,#4b0b64 0,transparent 29%),var(--bg); font-family:"Golos Text",sans-serif; }
+    main { display:grid; grid-template-columns:minmax(0,1fr) 355px; min-height:100vh; } .stage { display:grid; place-items:center; padding:42px; }
+    .map-wrap { width:min(100%,1080px); } .map-wrap svg { width:100%; height:auto; overflow:visible; filter:drop-shadow(0 23px 40px #0009); }
+    .map-wrap path { fill:#361044; stroke:#dcb3ff; stroke-width:1.8; vector-effect:non-scaling-stroke; cursor:pointer; transition:.18s; } .map-wrap path:hover,.map-wrap path.active { fill:var(--pink); stroke:white; filter:drop-shadow(0 0 12px var(--pink)); } .city-point { cursor:pointer; } .city-point circle { fill:#ff78d1; stroke:#fff; stroke-width:3; vector-effect:non-scaling-stroke; filter:drop-shadow(0 0 9px #ff78d1); } .city-point text { fill:#fff; font:700 27px "Golos Text",sans-serif; paint-order:stroke; stroke:#210027; stroke-width:7px; stroke-linejoin:round; } .city-point.active circle,.city-point:hover circle { fill:#fff; stroke:#ff78d1; stroke-width:5; }
+    aside { padding:30px 24px; border-left:1px solid var(--line); background:rgba(22,0,29,.82); backdrop-filter:blur(18px); } h1 { margin:0 0 12px; font-size:27px; line-height:1.04; letter-spacing:-.055em; } p { color:rgba(255,255,255,.7); font-size:14px; line-height:1.5; } .selected { margin:24px 0 18px; padding:12px; border:1px solid var(--line); color:#e0b9ff; font-size:13px; } label { display:block; margin:13px 0 6px; color:#dcb3ff; font-size:12px; font-weight:700; } input { width:100%; padding:11px; border:1px solid var(--line); background:#130019; color:#fff; font:500 15px "Golos Text",sans-serif; outline:none; } input:focus { border-color:var(--pink); } button { width:100%; margin-top:13px; padding:12px; border:1px solid var(--violet); color:#fff; background:#4e126a; font:700 14px "Golos Text",sans-serif; cursor:pointer; } button.secondary { background:transparent; border-color:var(--line); } #rows { max-height:26vh; margin-top:20px; overflow:auto; border-top:1px solid var(--line); } .row { padding:9px 2px; border-bottom:1px solid rgba(218,173,255,.12); color:#fff; font-size:12px; cursor:pointer; } .row b { color:var(--pink); margin-right:7px; } @media(max-width:800px){ main{grid-template-columns:1fr}.stage{padding:25px 16px;min-height:56vh}aside{border-left:0;border-top:1px solid var(--line)} }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="stage"><div class="map-wrap" id="map" aria-label="Карта для разметки регионов"></div></section>
+    <aside>
+      <h1>Разметка карты</h1><p>Все данные рейтинга уже заполнены. Выберите запись справа, затем кликните её контур на карте. Назначение сохраняется автоматически.</p>
+      <div class="selected" id="selected">1. Выберите запись рейтинга<br>2. Кликните соответствующую область</div>
+      <button id="export" class="secondary">Скачать готовый JSON для сайта</button><button id="reset" class="secondary">Сбросить только разметку</button>
+      <div id="rows"></div>
+    </aside>
+  <script>
+    const ratings = [
+      ['г. Астана','Астана',1,'89.2'],['г. Алматы','Алматы',2,'88.5'],['г. Шымкент','Шымкент',3,'81.3'],['Карагандинская область','Караганда',4,'79.1'],['Восточно-Казахстанская область','Усть-Каменогорск',5,'77.4'],['Западно-Казахстанская область','Уральск',6,'76.2'],['Костанайская область','Костанай',7,'75.8'],['Актюбинская область','Актобе',8,'74.9'],['область Жетісу','Талдыкорган',9,'73.5'],['Кызылординская область','Кызылорда',10,'72.8'],['Жамбылская область','Тараз',11,'71.4'],['Павлодарская область','Павлодар',12,'70.9'],['Акмолинская область','Кокшетау',13,'69.5'],['Алматинская область','Конаев',14,'68.2'],['Атырауская область','Атырау',15,'67.8'],['Северо-Казахстанская область','Петропавловск',16,'66.4'],['область Абай','Семей',17,'65.1'],['область Ұлытау','Жезказган',18,'64.3'],['Мангистауская область','Актау',19,'63.8'],['Туркестанская область','Туркестан',20,'62.5']
+    ].map(([region,city,place,score])=>({region,city,place,score}));
+    const map = document.querySelector('#map'), selected = document.querySelector('#selected'), storeKey = 'kazakhstan-region-annotation-v2';
+    const republicanCities = [{id:'astana',label:'Астана',x:1110,y:350},{id:'almaty',label:'Алматы',x:1370,y:775},{id:'shymkent',label:'Шымкент',x:1025,y:815}];
+    let assignments = JSON.parse(localStorage.getItem(storeKey) || '{}'), active = null, paths = [], cityPoints = [];
+    const saveState = () => localStorage.setItem(storeKey, JSON.stringify(assignments));
+    const targetLabel = target => typeof target === 'number' ? `контур ${target + 1}` : target?.startsWith('city:') ? `точка ${republicanCities.find(city=>`city:${city.id}`===target)?.label || ''}` : '';
+    const renderRows = () => document.querySelector('#rows').innerHTML = ratings.map((item,i) => `<div class="row${i===active?' active-row':''}" data-id="${i}"><b>№ ${item.place}</b>${item.city}<br><span>${item.region} · ${item.score} балла${assignments[i] !== undefined ? ` · ${targetLabel(assignments[i])}` : ''}</span></div>`).join('');
+    const selectRating = id => { active=id; const item=ratings[id], target=assignments[id]; paths.forEach((node,index)=>node.classList.toggle('active',index===target)); cityPoints.forEach(point=>point.classList.toggle('active',`city:${point.dataset.city}`===target)); selected.innerHTML=`<b>Выбрано:</b> № ${item.place} · ${item.city}<br>${item.region} · ${item.score} балла<br><br>Кликните соответствующую область или точку республиканского города на карте.`; renderRows(); };
+    const assignTarget = target => { if(active===null){ selected.textContent='Сначала выберите запись рейтинга справа.'; return; } assignments[active]=target; saveState(); selectRating(active); };
+    fetch('assets/kazakhstan-map.svg').then(r=>r.text()).then(svg=>{ map.innerHTML=svg; const mapSvg=map.querySelector('svg'); paths=[...mapSvg.querySelectorAll('path')]; paths.forEach((path,i)=>{path.dataset.regionId=i;path.addEventListener('click',()=>assignTarget(i));}); const ns='http://www.w3.org/2000/svg', group=document.createElementNS(ns,'g'); group.setAttribute('aria-label','Республиканские города'); republicanCities.forEach(city=>{const marker=document.createElementNS(ns,'g');marker.classList.add('city-point');marker.dataset.city=city.id;marker.innerHTML=`<circle cx="${city.x}" cy="${city.y}" r="13"></circle><text x="${city.x+20}" y="${city.y+9}">${city.label}</text>`;marker.addEventListener('click',event=>{event.stopPropagation();assignTarget(`city:${city.id}`)});group.append(marker);});mapSvg.append(group);cityPoints=[...group.querySelectorAll('.city-point')]; renderRows(); }).catch(()=>{selected.textContent='Не удалось загрузить SVG';});
+    document.querySelector('#rows').onclick=event=>{const row=event.target.closest('.row');if(row)selectRating(Number(row.dataset.id));};
+    document.querySelector('#reset').onclick=()=>{assignments={};saveState();active=null;selected.innerHTML='Разметка очищена. Выберите запись рейтинга.';paths.forEach(path=>path.classList.remove('active'));renderRows();};
+    document.querySelector('#export').onclick=()=>{ const output=ratings.map((item,index)=>{const target=assignments[index];return {...item,pathIndex:typeof target==='number'?target:null,mapTarget:target ?? null}}); const blob=new Blob([JSON.stringify(output,null,2)],{type:'application/json'}); const link=Object.assign(document.createElement('a'),{href:URL.createObjectURL(blob),download:'kazakhstan-region-map.json'}); link.click(); URL.revokeObjectURL(link.href); };
+  </script>
+</body>
+</html>

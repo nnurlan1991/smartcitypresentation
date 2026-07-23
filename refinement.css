@@ -1,0 +1,106 @@
+/* SamsungOne is reserved for headings; Golos gives Russian copy and data a confident presentation scale. */
+:root { --samsung-one: "SamsungOne", "Samsung One", "Samsung Sharp Sans", "Noto Sans", sans-serif; --body-font: "Golos Text", "Golos Display", sans-serif; }
+body, .method-points, .method-points span, .portal-copy>p:last-of-type, .cluster p, .packages p, .expansion-grid p { font-family: var(--body-font); font-size: 19px; }
+h1, h2, h3, h4, .hero h1, .command-center h3, .final-statement p, .kicker, .eyebrow, .packages h3, .expansion-grid h3 { font-family: var(--samsung-one); font-weight: 700; letter-spacing: -.065em; }
+
+.hero-note, .scene-head>p:not(.eyebrow), .function-list li, .cluster p, .packages p, .expansion-grid p { font-size: 18px; line-height: 1.55; }
+.data-block b, .data-block span, .learning-stats b, .learning-stats span, .learning-foot b, .learning-foot span, .team-card b, .team-card span, .models, .muted, .architecture, .service-path, .rail, .portal-tags span { font-family: var(--body-font); }
+.data-block span, .learning-stats span, .learning-foot span, .team-card span, .models, .muted { font-size: 15px; }
+.function-list li { font-size: 17px; }
+
+/* Logo placed in the breathing room after the methodology principles. */
+.method-points { display: flex; min-height: 530px; width: min(500px, 100%); justify-self: center; align-self: center; flex-direction: column; justify-content: center; }
+.method-points p { grid-template-columns: 44px 1fr; }
+.method-logo { width: min(480px, 100%); margin: 42px auto 0; padding: 28px 18px 0; border-top: 1px solid rgba(214,164,255,.28); }
+.method-logo img { display: block; width: 100%; height: auto; filter: drop-shadow(0 18px 28px rgba(0,0,0,.35)); }
+
+/* Reference portal mechanic: a fixed SMART line and an overlapping CITY / REGION word swap. */
+.smart-hero-title { width: min(760px, 100%); margin: 0; font-family: var(--samsung-one); font-size: clamp(4.25rem, 8.25vw, 9rem); font-weight: 800; letter-spacing: -.085em; line-height: .84; }
+.smart-static { display: block; color: #e8edf5; text-shadow: 0 0 34px rgba(232,237,245,.12); }
+.smart-switch { position: relative; display: block; height: .91em; overflow: visible; }
+.smart-switch > span { position: absolute; top: .06em; left: 0; display: block; white-space: nowrap; will-change: opacity, filter, transform; }
+.smart-city { color: #4f9cff; text-shadow: 0 0 34px rgba(79,156,255,.25); animation: smart-city-cycle 6s ease-in-out infinite; }
+.smart-region { color: #ff78d1; text-shadow: 0 0 34px rgba(255,120,209,.26); animation: smart-region-cycle 6s ease-in-out infinite; }
+@keyframes smart-city-cycle { 0%, 42% { opacity: 1; filter: blur(0); transform: translateY(0); } 50%, 92% { opacity: 0; filter: blur(8px); transform: translateY(-8px); } 100% { opacity: 1; filter: blur(0); transform: translateY(0); } }
+@keyframes smart-region-cycle { 0%, 42% { opacity: 0; filter: blur(8px); transform: translateY(8px); } 50%, 92% { opacity: 1; filter: blur(0); transform: translateY(0); } 100% { opacity: 0; filter: blur(8px); transform: translateY(8px); } }
+
+/* Institutional lock-up on the opening scene. */
+.hero-logos { position: absolute; top: 7vh; right: 8vw; z-index: 2; display: flex; align-items: center; gap: 17px; max-width: min(34vw, 420px); padding: 12px 15px; border: 1px solid rgba(214,164,255,.26); background: rgba(20,0,24,.45); backdrop-filter: blur(12px); }
+.hero-logos img:first-child { width: min(20vw, 255px); height: auto; filter: brightness(0) invert(1) grayscale(1) contrast(.9); opacity: .94; }
+.hero-logos img:last-child { width: min(7vw, 88px); height: auto; filter: brightness(0) invert(1); opacity: .95; }
+.hero-logos span { width: 1px; height: 33px; background: rgba(214,164,255,.55); }
+
+/* Actual regional map from the Smart City dashboard project. */
+.region-map { width: 43%; right: -1%; bottom: 1%; z-index: 2; text-align: center; }
+.region-map img { display: block; width: 100%; height: auto; filter: drop-shadow(0 0 20px rgba(214,164,255,.38)) saturate(1.35); opacity: .86; }
+.region-map span { display: inline-block; margin-top: -2%; padding: 7px 10px; background: rgba(20,0,24,.7); border: 1px solid rgba(214,164,255,.38); }
+.map-canvas { position: relative; width: 100%; aspect-ratio: 16 / 9; filter: drop-shadow(0 0 22px rgba(214,164,255,.32)); }
+.kazakhstan-svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.kazakhstan-svg path { fill: #32103f; stroke: rgba(214,164,255,.42); stroke-width: 1.6px; opacity: 1; vector-effect: non-scaling-stroke; cursor: pointer; pointer-events: all; transition: fill .22s ease, stroke .22s ease, filter .22s ease; }
+.kazakhstan-svg path.map-active { stroke: #fff; stroke-width: 2px; }
+.kazakhstan-svg path.map-active.rank-top { fill: #43d98b; filter: drop-shadow(0 0 12px rgba(67,217,139,.9)); }
+.kazakhstan-svg path.map-active.rank-middle { fill: #ffd766; filter: drop-shadow(0 0 12px rgba(255,215,102,.8)); }
+.kazakhstan-svg path.map-active.rank-bottom { fill: #ff6d72; filter: drop-shadow(0 0 12px rgba(255,109,114,.85)); }
+.map-city-marker { cursor: pointer; outline: none; }.map-city-marker circle:first-child { fill: #19001e; stroke: #fff; stroke-width: 3px; vector-effect: non-scaling-stroke; transition: .2s; }.map-city-marker circle:last-child { fill: #fff; pointer-events: none; }.map-city-marker.rank-top circle:first-child { stroke: #43d98b; }.map-city-marker.rank-middle circle:first-child { stroke: #ffd766; }.map-city-marker.rank-bottom circle:first-child { stroke: #ff6d72; }.map-city-marker.map-active circle:first-child, .map-city-marker:hover circle:first-child { transform-box: fill-box; transform-origin: center; transform: scale(1.38); }
+.region-pin { position: absolute; width: 26px; height: 26px; translate: -50% -50%; padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: pointer; z-index: 2; }
+.region-pin i { position: absolute; inset: 7px; border-radius: 50%; background: #ff78d1; border: 2px solid #fff; box-shadow: 0 0 0 4px rgba(255,120,209,.17), 0 0 18px rgba(255,120,209,.95); transition: .2s; }
+.region-pin b { position: absolute; left: 16px; top: -10px; min-width: 18px; padding: 2px 4px; border-radius: 10px; background: #1a0020; color: #fff; font: 700 8px/1 var(--samsung-one); opacity: 0; transform: translateY(5px); transition: .2s; }
+.region-pin:hover i, .region-pin.is-active i, .region-pin:focus-visible i { inset: 3px; background: #fff; border-color: #ff78d1; }
+.region-pin:hover b, .region-pin.is-active b, .region-pin:focus-visible b { opacity: 1; transform: translateY(0); }
+.map-tooltip { --rank-color: #ffd766; position: absolute; top: calc(100% + 44px); left: 0; z-index: 3; width: 100%; min-height: 142px; padding: 17px 19px; border: 1px solid color-mix(in srgb, var(--rank-color) 65%, transparent); border-left: 5px solid var(--rank-color); background: linear-gradient(110deg, rgba(29,5,36,.98), rgba(46,12,58,.92)); box-shadow: 0 18px 42px rgba(0,0,0,.48); opacity: 0; transform: translateY(10px); pointer-events: none; transition: .2s; }
+.map-tooltip.rank-top { --rank-color: #43d98b; }.map-tooltip.rank-middle { --rank-color: #ffd766; }.map-tooltip.rank-bottom { --rank-color: #ff6d72; }
+.map-tooltip.is-visible { opacity: 1; transform: translateY(0); }
+.map-tooltip small { display: block; margin-bottom: 6px; color: var(--rank-color); font: 700 9px/1.2 var(--body-font); letter-spacing: .08em; text-transform: uppercase; }.map-tooltip strong { display: block; font: 700 19px/1.1 var(--samsung-one); }.map-card-data { display:grid; grid-template-columns:1fr auto; gap:4px 12px; align-items:end; margin-top:12px; }.map-card-data span { grid-row:1/3; margin:0; padding:0; border:0; background:transparent; color:rgba(255,255,255,.72); font:600 15px/1.2 var(--body-font); }.map-card-data b { color:var(--rank-color); font:800 17px/1 var(--body-font); }.map-card-data em { color:#fff; font:800 28px/1 var(--body-font); font-style:normal; }.map-card-data i { margin-left:4px; color:rgba(255,255,255,.58); font:600 11px/1 var(--body-font); font-style:normal; }.map-tooltip p { margin:11px 0 0; color:var(--rank-color); font:700 11px/1 var(--body-font); letter-spacing:.04em; text-transform:uppercase; }
+
+/* Centered face crops in identical oval frames. */
+.team-grid { grid-template-columns: repeat(3, minmax(190px, 248px)); justify-content: center; gap: 28px; }
+.team-card { width: 100%; aspect-ratio: 1 / 1; border-radius: 32px; border: 2px solid rgba(214,164,255,.8); box-shadow: 0 0 0 7px rgba(138,43,226,.12), 0 18px 45px rgba(0,0,0,.35); }
+.team-card img { object-position: 50% 27%; transform: scale(1.03); }
+.team-card:nth-child(1) img { object-position: 50% 44%; transform: scale(1); }
+.team-card:nth-child(2), .team-card:nth-child(3) { background: #fff; }
+.team-card:nth-child(2) img { object-position: 52% 15%; transform: scale(1.05); }
+.team-card:nth-child(3) img { object-position: 50% 28%; transform: scale(1.04); }
+.team-card:hover img { transform: scale(1.09); }
+.team-card:nth-child(1):hover img { transform: scale(1.05); }.team-card:nth-child(2):hover img { transform: scale(1.1); }.team-card:nth-child(3):hover img { transform: scale(1.09); }
+.team-card:after { background: linear-gradient(0deg, rgba(19,0,24,.96) 0%, rgba(19,0,24,.12) 62%); }
+.team-card div { left: 20px; right: 20px; bottom: 28px; text-align: center; }
+
+/* Real screen recording of the portal, contained in the browser frame. */
+.browser-mockup { background: #070009; transform: perspective(1200px) rotateY(-5deg); }
+.portal-video { display: block; width: 100%; aspect-ratio: 1.78 / 1; object-fit: cover; object-position: top center; background: #070009; }
+
+/* Elevated closing theses. */
+.final-statement { grid-template-columns: 1.45fr repeat(3, .8fr); gap: 14px; align-items: stretch; }
+.final-statement p { padding-right: 25px; align-self: center; }
+.final-statement span { display: flex; min-height: 112px; align-items: flex-end; padding: 16px; border: 1px solid rgba(214,164,255,.45); border-top: 3px solid #ff78d1; background: linear-gradient(145deg, rgba(138,43,226,.34), rgba(255,120,209,.1)); font-family: var(--samsung-one); font-size: 16px; font-weight: 700; line-height: 1.18; color: #fff; box-shadow: inset 0 1px rgba(255,255,255,.18), 0 15px 35px rgba(0,0,0,.18); }
+.final-statement span:nth-of-type(2) { border-top-color: #d6a4ff; transform: translateY(14px); }
+.final-statement span:nth-of-type(3) { border-top-color: #8a2be2; }
+
+@media (min-width: 761px) {
+  .method-points { grid-column: 2; grid-row: 1 / span 2; align-self: center; transform: translateY(9vh); }
+  .team-layout { grid-template-columns: 58% 42%; column-gap: 0; }
+  .team-layout .scene-head, .team-layout .team-grid, .team-layout .function-list { grid-column: 1; }
+  .team-grid { width: 100%; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 12px; }
+  .team-card { max-width: none; }
+  .region-map { top: 17%; right: 0; bottom: auto; width: 39%; }
+  .function-list { margin-top: 12px; }
+}
+
+@media (max-width: 760px) {
+  .team-grid { grid-template-columns: 1fr; justify-items: center; gap: 20px; }
+  .team-card { width: min(74vw, 270px); aspect-ratio: 1 / 1; border-radius: 28px; }
+  .method-points { display: block; min-height: auto; padding-top: 18px; }.method-logo { width: min(390px, 100%); margin: 34px auto 0; padding: 23px 14px 0; }
+  .hero-logos { top: 4vh; right: 22px; max-width: calc(100vw - 44px); gap: 11px; padding: 9px 11px; }
+  .hero-logos img:first-child { width: min(52vw, 220px); }
+  .hero-logos img:last-child { width: min(17vw, 70px); }
+  .smart-hero-title { font-size: clamp(3.35rem, 13.5vw, 5rem); letter-spacing: -.09em; }
+  .region-map { position: relative; display: block; width: min(100%, 440px); right: auto; bottom: auto; margin: 28px auto 0; }
+  .map-tooltip { top: calc(100% + 43px); left: 0; }
+  .browser-mockup { transform: none; }
+  .portal-video { aspect-ratio: 1.46 / 1; }
+  .final-statement { grid-template-columns: 1fr; }
+  .final-statement p { padding-right: 0; }
+  .final-statement span { min-height: 92px; font-size: 18px; }
+  .final-statement span:nth-of-type(2) { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) { .smart-city { animation: none; }.smart-region { display: none; } }
