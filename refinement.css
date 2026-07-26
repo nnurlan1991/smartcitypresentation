@@ -172,6 +172,7 @@ html[data-theme="light"] .scene-head h2 em, html[data-theme="light"] h2 i { colo
 html[data-theme="light"] .method-points p, html[data-theme="light"] .portal-copy a, html[data-theme="light"] .cycle i, html[data-theme="light"] .service-path i { color: #075fc8; }
 html[data-theme="light"] .map-card-data b { color: var(--rank-color); }
 html[data-theme="light"] article small, html[data-theme="light"] .cluster span, html[data-theme="light"] .learning-stats span, html[data-theme="light"] .learning-foot span, html[data-theme="light"] .models { color: #075fc8; }
+html[data-theme="light"] .data-block span, html[data-theme="light"] .data-block .deadline b { color: #075fc8; }
 
 /* A custom, typographic AI & Digital Qazaqstan 2026 lock-up replaces the low-contrast source logo. */
 .method-logo { display: grid; min-height: 126px; padding: 0; border: 0; place-items: center; }
@@ -181,6 +182,7 @@ html[data-theme="light"] article small, html[data-theme="light"] .cluster span, 
 .aiq-name b { font-size: clamp(17px,2vw,25px); letter-spacing: -.055em; }.aiq-name i { color: #7dccff; font-size: clamp(12px,1.4vw,16px); font-style: normal; letter-spacing: .19em; }
 .aiq-lockup > strong { padding-left: 18px; border-left: 1px solid rgba(255,255,255,.36); color: #fff; font: 800 clamp(19px,2.2vw,31px)/1 var(--samsung-one); letter-spacing: -.08em; }
 html[data-theme="light"] .method-logo { background: transparent; box-shadow: none; }
+html[data-theme="light"] .method-logo { display: none; }
 html[data-theme="light"] .aiq-lockup { border-color: rgba(6,87,182,.22); background: linear-gradient(135deg,#fff,#edf5ff); box-shadow: 0 17px 34px rgba(26,69,132,.13); }
 html[data-theme="light"] .aiq-mark { border-color: #075fc8; color: #075fc8; background: #fff; }
 html[data-theme="light"] .aiq-name { color: #18233b; }.aiq-name i { color: #075fc8; }
