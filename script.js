@@ -7,7 +7,8 @@
   const themeStorageKey = 'smart-city-theme';
   const applyTheme = theme => {
     const isLight = theme === 'light';
-    document.documentElement.dataset.theme = isLight ? 'light' : 'dark';
+    if (isLight) document.documentElement.dataset.theme = 'light';
+    else delete document.documentElement.dataset.theme;
     document.querySelector('meta[name="theme-color"]')?.setAttribute('content', isLight ? '#f6f7fb' : '#140018');
     themeToggle?.setAttribute('aria-pressed', String(isLight));
     themeToggle?.setAttribute('aria-label', isLight ? 'Включить тёмную тему' : 'Включить светлую тему');
