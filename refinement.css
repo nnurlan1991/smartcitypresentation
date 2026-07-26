@@ -174,19 +174,7 @@ html[data-theme="light"] .map-card-data b { color: var(--rank-color); }
 html[data-theme="light"] article small, html[data-theme="light"] .cluster span, html[data-theme="light"] .learning-stats span, html[data-theme="light"] .learning-foot span, html[data-theme="light"] .models { color: #075fc8; }
 html[data-theme="light"] .data-block span, html[data-theme="light"] .data-block .deadline b { color: #075fc8; }
 
-/* A custom, typographic AI & Digital Qazaqstan 2026 lock-up replaces the low-contrast source logo. */
-.method-logo { display: grid; min-height: 126px; padding: 0; border: 0; place-items: center; }
-.aiq-lockup { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 18px; width: 100%; padding: 21px 24px; border: 1px solid rgba(122,184,255,.34); background: linear-gradient(135deg,#071a3d,#0a3a78); box-shadow: 0 18px 38px rgba(3,23,61,.3); }
-.aiq-mark { display: grid; width: 65px; height: 65px; place-items: center; border: 1px solid rgba(255,255,255,.62); color: #fff; font: 800 28px/.85 var(--samsung-one); letter-spacing: -.1em; }
-.aiq-name { display: grid; gap: 3px; color: #fff; font-family: var(--samsung-one); line-height: 1; }
-.aiq-name b { font-size: clamp(17px,2vw,25px); letter-spacing: -.055em; }.aiq-name i { color: #7dccff; font-size: clamp(12px,1.4vw,16px); font-style: normal; letter-spacing: .19em; }
-.aiq-lockup > strong { padding-left: 18px; border-left: 1px solid rgba(255,255,255,.36); color: #fff; font: 800 clamp(19px,2.2vw,31px)/1 var(--samsung-one); letter-spacing: -.08em; }
-html[data-theme="light"] .method-logo { background: transparent; box-shadow: none; }
 html[data-theme="light"] .method-logo { display: none; }
-html[data-theme="light"] .aiq-lockup { border-color: rgba(6,87,182,.22); background: linear-gradient(135deg,#fff,#edf5ff); box-shadow: 0 17px 34px rgba(26,69,132,.13); }
-html[data-theme="light"] .aiq-mark { border-color: #075fc8; color: #075fc8; background: #fff; }
-html[data-theme="light"] .aiq-name { color: #18233b; }.aiq-name i { color: #075fc8; }
-html[data-theme="light"] .aiq-lockup > strong { border-color: rgba(7,95,200,.26); color: #075fc8; }
 
 /* The finale needs its own surface because the original scene intentionally carried a dark gradient. */
 html[data-theme="light"] .finale { background: linear-gradient(180deg,rgba(247,248,252,.3),#f5f7fc 31%,#eef4ff 100%); }
@@ -203,8 +191,6 @@ html[data-theme="light"] .finale .final-statement span { border-top-color: #075f
 html[data-theme="light"] .finale .final-statement span:nth-of-type(2) { border-top-color: #a11f5e; }
 html[data-theme="light"] .finale .final-statement span:nth-of-type(3) { border-top-color: #167a69; }
 
-@media (max-width: 760px) { .aiq-lockup { gap: 12px; padding: 17px; }.aiq-mark { width: 51px; height: 51px; font-size: 22px; }.aiq-lockup > strong { padding-left: 12px; } }
-
 /* Final light-mode polish: all secondary signals use one legible cobalt system. */
 html[data-theme="light"] .region-map > span { color: #fff; background: #17376f; border-color: #4b87d8; box-shadow: 0 8px 18px rgba(20,57,117,.18); }
 html[data-theme="light"] .big-stat b { color: #075fc8; }
@@ -212,18 +198,11 @@ html[data-theme="light"] .next-stage { border-color: rgba(7,95,200,.28); border-
 html[data-theme="light"] .next-stage p { color: #075fc8; }
 html[data-theme="light"] .next-stage b { color: #17284b; }
 
-/* Original campaign mark: retained exactly in dark mode, deliberately absent in light mode. */
-.method-logo { display: block; min-height: 0; padding: 28px 18px 0; border-top: 1px solid rgba(214,164,255,.28); background: transparent; box-shadow: none; }
-.method-logo img { display: block; width: 100%; height: auto; filter: drop-shadow(0 18px 28px rgba(0,0,0,.35)); }
-html[data-theme="light"] .method-logo { display: none; }
-
 /* A plain iPhone-style switch: one rail, one thumb, no pictograms. */
 .theme-toggle { width: 48px; height: 29px; padding: 2px; border: 0; background: rgba(255,255,255,.3); box-shadow: inset 0 0 0 1px rgba(255,255,255,.18), 0 5px 14px rgba(0,0,0,.16); }
 .theme-toggle-knob { top: 2px; left: 2px; width: 25px; height: 25px; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.35); }
 html[data-theme="light"] .theme-toggle { border: 0; background: #34c759; box-shadow: inset 0 0 0 1px rgba(0,0,0,.06), 0 5px 14px rgba(20,76,37,.16); }
 html[data-theme="light"] .theme-toggle-knob { transform: translateX(19px); background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.25); }
-
-@media (max-width: 760px) { .method-logo { padding: 23px 14px 0; } }
 
 /* Explicit light-only overrides for the reviewed elements. */
 html[data-theme="light"] .region-map > span { background: rgba(255,255,255,.9) !important; border: 1px solid #9bc0f4 !important; color: #123f82 !important; box-shadow: 0 8px 18px rgba(25,65,130,.13) !important; }
