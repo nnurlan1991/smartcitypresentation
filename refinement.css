@@ -224,3 +224,10 @@ html[data-theme="light"] .theme-toggle { border: 0; background: #34c759; box-sha
 html[data-theme="light"] .theme-toggle-knob { transform: translateX(19px); background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.25); }
 
 @media (max-width: 760px) { .method-logo { padding: 23px 14px 0; } }
+
+/* Explicit light-only overrides for the reviewed elements. */
+html[data-theme="light"] .region-map > span { background: rgba(255,255,255,.9) !important; border: 1px solid #9bc0f4 !important; color: #123f82 !important; box-shadow: 0 8px 18px rgba(25,65,130,.13) !important; }
+html[data-theme="light"] .big-stat b { color: #075fc8 !important; }
+html[data-theme="light"] .next-stage { background: transparent !important; border: 1px solid #a259cf !important; border-left-width: 3px !important; }
+html[data-theme="light"] .next-stage p { color: #64238d !important; }
+html[data-theme="light"] .next-stage b { color: #17284b !important; }
