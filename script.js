@@ -3,6 +3,22 @@
   const grid = document.getElementById('team-grid');
   grid.innerHTML = team.map(member => `<article class="team-card"><img src="${member.photo}" alt="${member.name}" loading="eager"><div><b>${member.name}</b><span>${member.role}</span></div></article>`).join('');
 
+  const themeToggle = document.getElementById('theme-toggle');
+  const themeStorageKey = 'smart-city-theme';
+  const applyTheme = theme => {
+    const isLight = theme === 'light';
+    document.documentElement.dataset.theme = isLight ? 'light' : 'dark';
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', isLight ? '#f6f7fb' : '#140018');
+    themeToggle?.setAttribute('aria-pressed', String(isLight));
+    themeToggle?.setAttribute('aria-label', isLight ? 'Включить тёмную тему' : 'Включить светлую тему');
+  };
+  try { applyTheme(localStorage.getItem(themeStorageKey) || 'dark'); } catch (_) { applyTheme('dark'); }
+  themeToggle?.addEventListener('click', () => {
+    const nextTheme = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+    try { localStorage.setItem(themeStorageKey, nextTheme); } catch (_) { /* Current-session switch still works. */ }
+    applyTheme(nextTheme);
+  });
+
   const mapCanvas = document.querySelector('.map-canvas');
   if (mapCanvas) {
     const tooltip = mapCanvas.querySelector('.map-tooltip');

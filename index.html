@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#140018"><title>Smart City / Smart Region — ИИ-регионы</title>
+  <script>try{document.documentElement.dataset.theme=localStorage.getItem('smart-city-theme')||'dark'}catch(_){document.documentElement.dataset.theme='dark'}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
@@ -15,6 +16,7 @@
   <div class="video-stage" aria-hidden="true"><video id="scroll-video" muted playsinline preload="auto" poster="assets/video-poster.webp"><source src="assets/region-network.webm" type="video/webm"><source src="assets/region-network.mp4" type="video/mp4"></video><div class="video-vignette"></div></div>
   <main>
     <section class="scene hero" id="scene-0" data-scene="0">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Включить светлую тему" aria-pressed="false"><span class="theme-glyph theme-glyph-sun" aria-hidden="true">☀</span><span class="theme-toggle-knob" aria-hidden="true"></span><span class="theme-glyph theme-glyph-moon" aria-hidden="true">☾</span></button>
       <div class="hero-logos" aria-label="Организации проекта"><img src="logos/ai_digital_2.png" alt="Министерство искусственного интеллекта и цифрового развития"><span></span><img src="logos/ыыы.png" alt="DGSC"></div>
       <div class="hero-copy reveal"><p class="eyebrow">КАЗАХСТАН · ЦИФРОВАЯ ТРАНСФОРМАЦИЯ РЕГИОНОВ</p><h1 class="smart-hero-title" aria-label="Smart City / Smart Region"><span class="smart-static">SMART</span><span class="smart-switch"><span class="smart-city">CITY</span><span class="smart-region">REGION</span></span></h1><p class="lead">От единой методологии к системной цифровой трансформации регионов</p><p class="hero-note">Команда, которая формирует стандарты, координирует 20 регионов и создает основу нового центра «ИИ-регионы»</p></div>
       <div class="hero-sphere" aria-label="Сеть 20 регионов"><div class="sphere-core"></div><span class="orbit a"></span><span class="orbit b"></span><span class="orbit c"></span><div class="nodes"></div><small>20 регионов · единый контур</small></div>
